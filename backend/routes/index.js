@@ -15,5 +15,6 @@ router.post("/adduserdetails", UserController.AddUserDetails);
 
 //products
 router.post("/addproduct", ProductController.AddProduct);
+router.get("/getproducts/:vendorid?", ProductController.GetProducts);
 
 module.exports = router;

@@ -19,6 +19,27 @@ const AddProduct = async (req, res) => {
   }
 };
 
+const GetProducts = async (req, res) => {
+  let { vendorid } = req.params;
+  if (!vendorid) vendorid = 0;
+
+  try {
+    sql
+      .connect(config)
+      .then(() => {
+        const Request = new sql.Request();
+        const Query = `EXEC GetProducts ${vendorid}`;
+        Request.query(Query)
+          .then((data) => res.send(data.recordset))
+          .catch((error) => console.log(error));
+      })
+      .catch((error) => console.log(error));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   AddProduct: AddProduct,
+  GetProducts: GetProducts,
 };
