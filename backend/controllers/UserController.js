@@ -11,14 +11,12 @@ const Signup = async (req, res) => {
         const Request = new sql.Request();
         const Query = `EXEC Signup '${username}', '${email}', '${password}', ${usertype}`;
         Request.query(Query)
-          .then((data) => {
-            res.send(data.recordset);
-          })
-          .catch((error) => console.log(error.message));
+          .then((data) => res.send(data.recordset))
+          .catch((error) => console.log(error));
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => console.log(error));
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 
@@ -32,11 +30,11 @@ const Signin = async (req, res) => {
         const Query = `EXEC Signin '${email}', '${password}'`;
         Request.query(Query)
           .then((data) => res.send(data.recordset))
-          .catch((error) => console.log(error.message));
+          .catch((error) => console.log(error));
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => console.log(error));
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 
@@ -50,11 +48,11 @@ const AddUserDetails = async (req, res) => {
         const Query = `EXEC AddUserDetails '${userid}', '${name}', '${address}', '${phone}'`;
         Request.query(Query)
           .then((data) => res.send(data.recordset))
-          .catch((error) => console.log(error.message));
+          .catch((error) => console.log(error));
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => console.log(error));
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 
