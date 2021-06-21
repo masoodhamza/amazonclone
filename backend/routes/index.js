@@ -20,5 +20,9 @@ router.get("/getproducts/:vendorid?", ProductController.GetProducts);
 
 //orders
 router.post("/addtocart", OrderController.AddToCart);
+router.get(
+  "/removefromcart/:customerid/:productid?",
+  OrderController.RemoveFromCart
+);
 
 module.exports = router;
