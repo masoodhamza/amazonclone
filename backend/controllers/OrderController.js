@@ -38,7 +38,26 @@ const RemoveFromCart = async (req, res) => {
   }
 };
 
+const Checkout = async (req, res) => {
+  const { customerid } = req.params;
+  try {
+    sql
+      .connect(config)
+      .then(() => {
+        const Request = new sql.Request();
+        const Query = `EXEC Checkout ${customerid}`;
+        Request.query(Query)
+          .then((data) => res.send(data.recordset))
+          .catch((error) => console.log(error));
+      })
+      .catch((error) => console.log(error));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   AddToCart: AddToCart,
   RemoveFromCart: RemoveFromCart,
+  Checkout: Checkout,
 };

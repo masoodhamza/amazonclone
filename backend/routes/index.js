@@ -1,5 +1,5 @@
 var express = require("express");
-const CartController = require("../controllers/CartController");
+const OrderController = require("../controllers/OrderController");
 const ProductController = require("../controllers/ProductController");
 const UserController = require("../controllers/UserController");
 var router = express.Router();
@@ -18,11 +18,14 @@ router.post("/adduserdetails", UserController.AddUserDetails);
 router.post("/addproduct", ProductController.AddProduct);
 router.get("/getproducts/:vendorid?", ProductController.GetProducts);
 
-//orders
-router.post("/addtocart", CartController.AddToCart);
+//cart
+router.post("/addtocart", OrderController.AddToCart);
 router.get(
   "/removefromcart/:customerid/:productid?",
-  CartController.RemoveFromCart
+  OrderController.RemoveFromCart
 );
+
+//order
+router.get("/checkout/:customerid", OrderController.Checkout);
 
 module.exports = router;
